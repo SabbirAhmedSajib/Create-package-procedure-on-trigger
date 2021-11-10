@@ -1,0 +1,46 @@
+CREATE OR REPLACE TRIGGER newtechnic
+   AFTER INSERT OR
+         UPDATE OR
+         DELETE OF emp_id,
+                   last_name,
+                   salary,
+                   phone_number
+   ON emp_info
+   FOR EACH ROW
+   declare
+   
+   new_emp_id         number;
+   new_last_name      varchar(30);
+   new_salary         varchar(30);
+   new_phone_number   varchar(30);
+  new_systimestamp   varchar(30);
+  
+  old_emp_id         number;
+   old_last_name      varchar(30);
+   old_salary         varchar(30);
+   old_phone_number   varchar(30);
+  old_systimestamp   varchar(30);
+   
+   begin
+   
+   if inserting then
+   happyerror.emp_info_i(:new.emp_id,
+                         :new.last_name,
+                         :new.salary ,
+                         :new.phone_number ,
+                         :new.systimestamp);
+                         
+   
+   elsif updating then
+   
+   happyerror.emp_info_u(:old.emp_id ,
+                         :old.last_name,
+                         :old.salary,
+                         :old.phone_number ,
+                         systimestamp);
+   
+   ELSE
+      DBMS_OUTPUT.PUT_LINE ('This code is not reachable.');
+   END IF;
+   
+   end;
