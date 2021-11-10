@@ -1,0 +1,16 @@
+create or replace package  happyerror
+is 
+ PROCEDURE emp_info_i(
+	   new_emp_id IN emp_info.emp_id%TYPE,
+	   new_last_name IN emp_info.last_name%TYPE,
+	   new_salary IN emp_info.salary%TYPE,
+	   new_phone_number IN emp_info.phone_number%TYPE,
+	   new_systimestamp IN emp_info.systimestamp%TYPE);
+
+ PROCEDURE emp_info_u(
+	   old_emp_id IN emp_info.emp_id%TYPE,
+	   old_last_name IN emp_info.last_name%TYPE,
+	   old_salary IN emp_info.salary%TYPE,
+	   old_phone_number IN emp_info.phone_number%TYPE,
+	   old_systimestamp IN emp_info.systimestamp%TYPE);
+end happyerror;
